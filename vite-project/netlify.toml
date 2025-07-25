@@ -1,0 +1,6 @@
+[build]
+  base = "vite-project"
+  publish = "vite-project/dist"
+  command = "npm run build"
+
+# Remove the functions directory setting entirely
