@@ -1,6 +1,9 @@
 [build]
   base = "vite-project"
-  publish = "vite-project/dist"
+  publish = "dist"
   command = "npm run build"
 
-# Remove the functions directory setting entirely
+[dev]
+  command = "npm run dev"
+  port = 5173
+  targetPort = 5173

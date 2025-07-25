@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import  { useRef, useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { OverlayPanel } from 'primereact/overlaypanel';
@@ -29,13 +29,13 @@ interface ApiResponse {
 
 export default function ArtworkTable() {
   const [artworks, setArtworks] = useState<Artwork[]>([]);
-  const [selectedArtworks, setSelectedArtworks] = useState<Artwork[]>([]);
   const [selectionMap, setSelectionMap] = useState<{ [key: number]: Artwork }>({});
   const [page, setPage] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
   const [inputValue, setInputValue] = useState<number>(0);
   const op = useRef<OverlayPanel>(null);
   const rows = 12;
+
 
   useEffect(() => {
     fetchArtworks(page);
@@ -77,7 +77,6 @@ export default function ArtworkTable() {
       }
 
       setSelectionMap(newSelected);
-      setSelectedArtworks(Object.values(newSelected));
       op.current?.hide();
     };
 
@@ -98,7 +97,6 @@ export default function ArtworkTable() {
     });
 
     setSelectionMap(newMap);
-    setSelectedArtworks(Object.values(newMap));
   };
 
   const customHeader = () => (
@@ -139,6 +137,7 @@ export default function ArtworkTable() {
         selection={Object.values(selectionMap)}
         onSelectionChange={onSelectionChange}
         dataKey="id"
+        selectionMode="multiple"
       >
         <Column selectionMode="multiple" style={{ width: '3rem' }} />
         <Column header={customHeader} />
